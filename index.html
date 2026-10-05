@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tara NLP Text Analyzer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>🌟 Tara NLP Text Analyzer</h1>
+        <p>
+            Explore text using Natural Language Processing
+        </p>
+    </header>
+
+    <section class="input-card">
+
+        <h2>Enter Your Text</h2>
+
+        <textarea
+            id="textInput"
+            placeholder="Paste or type your text here..."
+        ></textarea>
+
+        <div class="action-buttons">
+
+            <button onclick="wordCount()">
+                Word Count
+            </button>
+
+            <button onclick="tokenize()">
+                Tokenize
+            </button>
+
+            <button onclick="stopwords()">
+                Stopwords
+            </button>
+
+            <button onclick="bigrams()">
+                Bigrams
+            </button>
+
+            <button onclick="posTagging()">
+                POS Tagging
+            </button>
+
+            <button onclick="entities()">
+                Named Entities
+            </button>
+
+            <button onclick="positiveWords()">
+                Positive Words
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section class="synonym-card">
+
+        <h2>Find Synonyms</h2>
+
+        <div class="synonym-input">
+
+            <input
+                type="text"
+                id="synonymWord"
+                placeholder="Enter a word..."
+            >
+
+            <button onclick="synonyms()">
+                Find Synonyms
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section class="result-card">
+
+        <div class="result-header">
+
+            <h2>Analysis Result</h2>
+
+            <button
+                class="clear-button"
+                onclick="clearResult()"
+            >
+                Clear
+            </button>
+
+        </div>
+
+        <div id="result">
+
+            <p class="placeholder">
+                Your NLP analysis will appear here.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            Tara NLP Text Analyzer
+        </p>
+
+        <span>
+            Python • FastAPI • NLTK • spaCy • TextBlob
+        </span>
+
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
