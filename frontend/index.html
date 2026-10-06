@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tara NLP Text Analyzer</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            🌟
+        </div>
+
+        <h1>Tara NLP Text Analyzer</h1>
+
+        <p>
+            Complete Natural Language Processing Dashboard
+        </p>
+
+    </header>
+
+
+    <!-- INPUT -->
+
+    <section class="input-card">
+
+        <div class="section-title">
+
+            <span>📝</span>
+
+            <div>
+                <h2>Input Text</h2>
+
+                <p>
+                    Enter or edit the text you want to analyze.
+                </p>
+            </div>
+
+        </div>
+
+
+        <textarea
+            id="textInput"
+            placeholder="Enter your text here..."
+        ></textarea>
+
+
+        <button
+            class="analyze-button"
+            onclick="analyzeAll()">
+
+            ✨ Analyze Complete Text
+
+        </button>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+
+    <section
+        id="dashboard"
+        class="dashboard hidden">
+
+
+        <!-- OVERVIEW -->
+
+        <div class="dashboard-title">
+
+            <div>
+
+                <span class="small-title">
+                    NLP ANALYSIS
+                </span>
+
+                <h2>
+                    Complete Analysis Dashboard
+                </h2>
+
+            </div>
+
+            <span
+                id="analysisStatus"
+                class="status">
+
+                Analysis Complete
+
+            </span>
+
+        </div>
+
+
+        <!-- STAT CARDS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <div>
+                    <span>Total Words</span>
+                    <strong id="totalWords">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔤
+                </div>
+
+                <div>
+                    <span>Distinct Words</span>
+                    <strong id="distinctWords">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔹
+                </div>
+
+                <div>
+                    <span>Total Tokens</span>
+                    <strong id="totalTokens">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔗
+                </div>
+
+                <div>
+                    <span>Total Bigrams</span>
+                    <strong id="totalBigrams">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🛑
+                </div>
+
+                <div>
+                    <span>Stopwords</span>
+                    <strong id="totalStopwords">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    😊
+                </div>
+
+                <div>
+                    <span>Positive Words</span>
+                    <strong id="totalPositive">0</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOKENIZATION -->
+
+        <div class="panel full-width">
+
+            <div class="panel-header">
+
+                <h3>
+                    🔤 Tokenization
+                </h3>
+
+                <span
+                    id="tokenCount"
+                    class="badge">
+                    0 tokens
+                </span>
+
+            </div>
+
+            <div
+                id="tokens"
+                class="chips">
+            </div>
+
+        </div>
+
+
+        <!-- STOPWORDS -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    🛑 Stopwords
+                </h3>
+
+                <span
+                    id="stopwordCount"
+                    class="badge">
+                    0
+                </span>
+
+            </div>
+
+            <div
+                id="stopwords"
+                class="chips">
+            </div>
+
+        </div>
+
+
+        <!-- POSITIVE WORDS -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    😊 Positive Words
+                </h3>
+
+                <span
+                    id="positiveCount"
+                    class="badge">
+                    0
+                </span>
+
+            </div>
+
+            <div
+                id="positiveWords"
+                class="chips positive">
+            </div>
+
+        </div>
+
+
+        <!-- BIGRAMS -->
+
+        <div class="panel full-width">
+
+            <div class="panel-header">
+
+                <h3>
+                    🔗 Bigrams
+                </h3>
+
+                <span
+                    id="bigramCount"
+                    class="badge">
+                    0
+                </span>
+
+            </div>
+
+            <div
+                id="bigrams"
+                class="bigram-grid">
+            </div>
+
+        </div>
+
+
+        <!-- SYNONYMS -->
+
+        <div class="panel full-width">
+
+            <div class="panel-header">
+
+                <h3>
+                    🔄 Synonyms
+                </h3>
+
+                <span class="badge">
+                    Content Words
+                </span>
+
+            </div>
+
+            <div
+                id="synonyms"
+                class="synonym-grid">
+            </div>
+
+        </div>
+
+
+        <!-- NAMED ENTITIES -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    📍 Named Entities
+                </h3>
+
+            </div>
+
+            <div
+                id="entities"
+                class="entity-list">
+            </div>
+
+        </div>
+
+
+        <!-- POS -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    🏷️ POS Tagging
+                </h3>
+
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Word</th>
+                            <th>Tag</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="posTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- LOADING -->
+
+    <div
+        id="loading"
+        class="loading hidden">
+
+        <div class="spinner"></div>
+
+        <p>
+            Analyzing your text...
+        </p>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div
+        id="error"
+        class="error hidden">
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>
+            Tara NLP Text Analyzer
+        </strong>
+
+        <p>
+            Python • FastAPI • NLTK • spaCy • TextBlob
+        </p>
+
+    </footer>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
